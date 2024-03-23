@@ -1,8 +1,10 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const Hero = () => {
   return (
     <div className=" flex mx-[16px] font-sora center justify-center md:mx-[80px]">
+
       <div className="grid grid-cols-1 md:grid-cols-2 items-center">
         <img src={"hero2.png"} alt="sugam vector" className="order-1 md:order-2"/>
         <div className="text-[28px] order-2 md:order-1 items-center md:mt-[24px]">
