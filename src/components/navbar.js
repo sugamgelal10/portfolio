@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import { IoMdDownload } from "react-icons/io";
 
 const Navbar = () => {
   const [toggle, setToogle] = useState(false);
-  const hambutton = () => {
-    setToogle(!toggle);
-    if (!toggle) {
-      document.body.style.overflowY = "hidden";
-    } else {
+  useEffect(() => {
+    document.body.style.overflowY = toggle ? "hidden" : "auto";
+    return () => {
       document.body.style.overflowY = "auto";
-    }
+    };
+  }, [toggle]);
+
+  const handleToggle = () => {
+    setToogle(!toggle);
   };
   return (
     <div className="scroll-smooth">
@@ -40,10 +42,13 @@ const Navbar = () => {
         {!toggle ? (
           <GiHamburgerMenu
             className="md:hidden cursor-pointer"
-            onClick={hambutton}
+            onClick={handleToggle}
           />
         ) : (
-          <GiCancel className="md:hidden cursor-pointer" onClick={hambutton} />
+          <GiCancel
+            className="md:hidden cursor-pointer"
+            onClick={handleToggle}
+          />
         )}
       </div>
       {toggle && (
@@ -62,16 +67,24 @@ const Navbar = () => {
             <div className=" flex flex-col gap-4 font-sora items-end list-none mx-[16px] bg-zinc-300 h-[100vh] md:hidden">
               <div className=" flex flex-col gap-4 items-end p-[16px] ">
                 <li>
-                  <a href="#about">About Me</a>
+                  <a href="#about" onClick={handleToggle}>
+                    About Me
+                  </a>
                 </li>
                 <li>
-                  <a href="#skill">Skills</a>
+                  <a href="#skill" onClick={handleToggle}>
+                    Skills
+                  </a>
                 </li>
                 <li>
-                  <a href="#project">Project</a>
+                  <a href="#project" onClick={handleToggle}>
+                    Project
+                  </a>
                 </li>
                 <li>
-                  <a href="#contact">Contact</a>
+                  <a href="#contact" onClick={handleToggle}>
+                    Contact
+                  </a>
                 </li>
                 <li>
                   <button className="flex items-center gap-2 bg-black text-white w-[153px] h-[56px] rounded-md justify-center hover:bg-#404040">
