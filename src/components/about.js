@@ -2,10 +2,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <section
-      className="mx-[32px] font-sora my-[16px] md:mx-[80px]"
-      about="about"
-    >
+    <section className="mx-[32px] font-sora my-[16px] md:mx-[80px]" id="about">
       <div className="grid grid-cols-1 md:grid-cols-2 ">
         <div className=" flex  justify-center rounded-md ">
           <img
