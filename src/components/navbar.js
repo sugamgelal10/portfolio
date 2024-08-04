@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { GiHamburgerMenu, GiCancel } from "react-icons/gi";
 import { IoMdDownload } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [toggle, setToogle] = useState(false);
   useEffect(() => {
     document.body.style.overflowY = toggle ? "hidden" : "auto";
@@ -12,11 +15,19 @@ const Navbar = () => {
     };
   }, [toggle]);
 
+  const handleClick = () => {
+    toast.success("hello World!");
+    window.open(
+      "https://drive.google.com/file/d/1L_F50xykh6ChevL_-WXZsvdQ1YZ4ysph/view?usp=sharing"
+    );
+  };
+
   const handleToggle = () => {
     setToogle(!toggle);
   };
   return (
     <div className="scroll-smooth">
+      <Toaster />
       <div className="flex p-[16px] font-sora  flex-cols items-center justify-between">
         <a href="#home">
           <div className="text-[24px] font-bold">Sugam Gelal</div>
@@ -35,7 +46,10 @@ const Navbar = () => {
             <a href="#contact">Contact</a>
           </li>
         </div>
-        <button className="hidden md:flex md:items-center md:gap-2 md:bg-black md:text-white md:w-[153px] md:h-[56px] md:rounded-md justify-center hover:bg-#404040">
+        <button
+          onClick={handleClick}
+          className="hidden md:flex md:items-center md:gap-2 md:bg-black md:text-white md:w-[153px] md:h-[56px] md:rounded-md justify-center hover:bg-#404040"
+        >
           Resume
           <IoMdDownload />
         </button>
@@ -87,7 +101,10 @@ const Navbar = () => {
                   </a>
                 </li>
                 <li>
-                  <button className="flex items-center gap-2 bg-black text-white w-[153px] h-[56px] rounded-md justify-center hover:bg-#404040">
+                  <button
+                    className="flex items-center gap-2 bg-black text-white w-[153px] h-[56px] rounded-md justify-center hover:bg-#404040"
+                    onClick={handleClick}
+                  >
                     Resume
                     <IoMdDownload />
                   </button>
