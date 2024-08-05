@@ -17,10 +17,30 @@ const Contact = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("You message has been submitted successfully");
-    console.log(form);
+    const response = await fetch("http://localhost:5001/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: form.name,
+        email: form.email,
+        web: form.web,
+        message: form.message,
+      }),
+    });
+
+    if (response.ok) {
+      toast.success("Your message has been submitted successfully");
+      setForm({
+        name: "",
+        email: "",
+        web: "",
+        message: "",
+      });
+    }
     setForm({
       name: "",
       email: "",
